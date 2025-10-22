@@ -1,21 +1,29 @@
 package JavaSpring.Builder.dev;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDate;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
+@Document(collection = "tasks")
 public class Task {
-    private int id;
+    @Id
+    private String id;
+    @NotBlank(message = "name must not be blank")
     private String name;
     private String description;
     private String taskStatus;
+    @NotNull(message = "dueDate must not be null")
     private LocalDate dueDate;
     private boolean completed;
+    @NotNull(message = "type must not be null")
     private TaskType type;
-    private Location location; // Optional, can be null if not applicable
+    private Location location; 
     
-    // Default constructor
     public Task() {}
     
-    // Constructor with all fields
+    
     /**
      * @param id
      * @param name
@@ -26,7 +34,7 @@ public class Task {
      * @param taskStatus
      * @param location
      */
-    public Task(int id, String name, String description, LocalDate dueDate, boolean completed, TaskType type, String taskStatus, Location location) {
+    public Task(String id, String name, String description, LocalDate dueDate, boolean completed, TaskType type, String taskStatus, Location location) {
         this.id = id;
         this.name = name;
         this.taskStatus = taskStatus;
@@ -37,19 +45,19 @@ public class Task {
         this.type = type;
     }
     
-    // Constructor without ID (for new tasks)
+    // Constructor without ID for new tasks:
     public Task(String name, String description, LocalDate dueDate, TaskType type) {
         this.name = name;
         this.description = description;
         this.dueDate = dueDate;
         this.completed = false;
         this.type = type;
-        this.taskStatus = "Pending"; // Default status
+        this.taskStatus = "Pending"; 
     }
     
     // Getters and Setters
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
     
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }

@@ -29,7 +29,7 @@ public class Application {
 	CommandLineRunner runner()
 	{
 		return args -> {
-			//log.info("Application started...");
+			//log.info;
 			TaskLetics dev = new TaskLetics(1, "TaskLetics", LocalDateTime.now(), LocalDateTime.now().plus(1, ChronoUnit.HOURS), Location.REMOTE);
 			log.info("Dev:" + dev + "Application started successfully");
 		};
